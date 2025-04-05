@@ -5,7 +5,7 @@ services:
       - roboshop
 
   web:
-    image: nginx:latest
+    image: web:latest
     ports:
       - "80:80"
     depends_on:
@@ -14,7 +14,7 @@ services:
       - roboshop
 
   catalogue:
-    build: ./catalogue
+    image: catalogue:1
     ports:
       - "8081:8080"
     networks:
