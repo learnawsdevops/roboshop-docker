@@ -1,11 +1,13 @@
 services:
   mongodb:
     image: mongodb:1
+    container_name: mongodb
     networks:
       - roboshop
 
   web:
     image: web:latest
+    container_name: web
     ports:
       - "80:80"
     depends_on:
@@ -15,6 +17,7 @@ services:
 
   catalogue:
     image: catalogue:1
+    container_name: catalogue
     ports:
       - "8081:8080"
     networks:
