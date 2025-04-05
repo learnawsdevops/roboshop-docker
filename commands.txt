@@ -1,0 +1,304 @@
+    1  05/04/25 05:38:06 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    2  05/04/25 05:38:16 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    3  05/04/25 05:40:04 sudo systemctl start docker
+    4  05/04/25 05:40:14 systemctl status docker
+    5  05/04/25 05:40:21 docker ps
+    6  05/04/25 05:40:25 sudo docker ps
+    7  05/04/25 05:40:43 sudo usermod -aG docker ec2-user
+    8  05/04/25 05:40:46 docker ps
+    9  05/04/25 05:38:06 sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+   10  05/04/25 05:38:16 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   11  05/04/25 05:40:04 sudo systemctl start docker
+   12  05/04/25 05:40:14 systemctl status docker
+   13  05/04/25 05:40:21 docker ps
+   14  05/04/25 05:40:25 sudo docker ps
+   15  05/04/25 05:40:43 sudo usermod -aG docker ec2-user
+   16  05/04/25 05:40:46 docker ps
+   17  05/04/25 05:53:18 git clone https://github.com/learnawsdevops/roboshop-docker.git
+   18  05/04/25 05:53:21 cd roboshop-docker/
+   19  05/04/25 05:53:22 ll
+   20  05/04/25 05:53:25 cd catalogue/
+   21  05/04/25 05:53:26 ll
+   22  05/04/25 05:53:45 docker build -t catalogue:1 .
+   23  05/04/25 05:55:11 git pull
+   24  05/04/25 05:55:13 docker build -t catalogue:1 .
+   25  05/04/25 06:01:05 git pull
+   26  05/04/25 06:01:08 cd ../mongodb/
+   27  05/04/25 06:01:18 docker build -t mongodb:1 .
+   28  05/04/25 06:11:08 du -h
+   29  05/04/25 06:11:14 du -hT
+   30  05/04/25 06:11:19 df -hT
+   31  05/04/25 06:13:36 docker system prune -af --volumes
+   32  05/04/25 06:13:42 df -hT
+   33  05/04/25 06:14:31 docker info | grep "Docker Root Dir"
+   34  05/04/25 06:20:30 df -hT
+   35  05/04/25 06:21:08 lsblk
+   36  05/04/25 06:25:25 sudo pvresize /dev/nvme0n1p4
+   37  05/04/25 06:25:37 sudo vgs
+   38  05/04/25 06:25:57 sudo lvextend -L +10G /dev/mapper/RootVG-varVol
+   39  05/04/25 06:26:38 lsblk
+   40  05/04/25 06:27:34 sudo growpart /dev/nvme0n1 4
+   41  05/04/25 06:27:40 lsblk
+   42  05/04/25 06:27:57 sudo pvresize /dev/nvme0n1p4
+   43  05/04/25 06:28:07 sudo vgs
+   44  05/04/25 06:28:15 sudo lvextend -L +10G /dev/mapper/RootVG-varVol
+   45  05/04/25 06:28:23 sudo xfs_growfs /var
+   46  05/04/25 06:28:34 df -hT /var
+   47  05/04/25 06:28:57 docker build -t mongodb:1 .
+   48  05/04/25 06:29:58 cd ../catalogue/
+   49  05/04/25 06:30:08 docker build -t catalogue:1 .
+   50  05/04/25 06:31:23 df -hT /var
+   51  05/04/25 06:31:39 docker images
+   52  05/04/25 06:31:48 git pull
+   53  05/04/25 06:31:55 cd ../web/
+   54  05/04/25 06:31:56 ll
+   55  05/04/25 06:32:18 docker build -t web:1 .
+   56  05/04/25 06:34:28 git pull
+   57  05/04/25 06:34:30 docker build -t web:1 .
+   58  05/04/25 06:34:38 docker images
+   59  05/04/25 06:35:23 docker run -d --name catalogue catalogue:1
+   60  05/04/25 06:35:27 docker ps
+   61  05/04/25 06:35:50 docker run -d --name mongodb mongodb:1
+   62  05/04/25 06:36:03 docker run -d --name web web:1
+   63  05/04/25 06:36:06 docker ps
+   64  05/04/25 06:36:13 docker ps -a
+   65  05/04/25 06:36:22 docker logs web
+   66  05/04/25 06:36:45 docker logs catalogue
+   67  05/04/25 06:37:11 docker run -d --name catalogue catalogue:1
+   68  05/04/25 06:37:21 docker restart catalogue
+   69  05/04/25 06:37:38 dcoker logs catalogue
+   70  05/04/25 06:37:44 docker logs catalogue
+   71  05/04/25 06:38:26 docker restart web
+   72  05/04/25 06:38:31 docker logs web
+   73  05/04/25 06:39:02 curl http://catalogue:8080
+   74  05/04/25 06:39:46 git pull
+   75  05/04/25 06:39:50 cd ../catalogue/
+   76  05/04/25 06:39:51 ll
+   77  05/04/25 06:40:00 docker rmi catalogue:1
+   78  05/04/25 06:40:18 docker rm -rf `docker -a -q`
+   79  05/04/25 06:40:27 docker ps
+   80  05/04/25 06:40:33 docker ps -a
+   81  05/04/25 06:40:46 docker rm  ae2ae9485e9d c937e5b351c2 9fcaa2e0ce2d
+   82  05/04/25 06:40:55 docker rm -rf  ae2ae9485e9d c937e5b351c2 9fcaa2e0ce2d
+   83  05/04/25 06:41:07 docker rm -f  ae2ae9485e9d c937e5b351c2 9fcaa2e0ce2d
+   84  05/04/25 06:41:22 docker images
+   85  05/04/25 06:41:32 docker rmi 519b6a127cdb
+   86  05/04/25 06:41:50 docker build -t catalogue:1 .
+   87  05/04/25 06:43:17 docker run -d --name catalogue catalogue:1
+   88  05/04/25 06:43:20 docker ps
+   89  05/04/25 06:43:25 docker logs catalogue
+   90  05/04/25 06:43:51 docker rm -f 3e3cfc5ba537
+   91  05/04/25 06:43:58 docker run -d --name mongodb mongodb:1
+   92  05/04/25 06:44:02 doker ps
+   93  05/04/25 06:44:05 docker ps
+   94  05/04/25 06:44:13 docker logs mongodb
+   95  05/04/25 06:44:45 docker run -d --name catalogue catalogue:1
+   96  05/04/25 06:44:48 docker ps
+   97  05/04/25 06:44:58 docker logs catalogue
+   98  05/04/25 06:45:25 docker run -d -p 80:80 --name web web:1
+   99  05/04/25 06:45:28 docker ps
+  100  05/04/25 06:45:32 docker ps -a
+  101  05/04/25 06:45:38 docker logs web
+  102  05/04/25 06:46:19 docker network --help
+  103  05/04/25 06:47:20 docker network create -d roboshop
+  104  05/04/25 06:47:25 docker ps -a
+  105  05/04/25 06:47:36 docker rm -f 0f353ae39e3d e1244ce5bd3e cc4a77f8c294
+  106  05/04/25 06:47:41 docker network
+  107  05/04/25 06:47:50 docker inspect
+  108  05/04/25 06:47:57 docker network inspect
+  109  05/04/25 06:49:22 docker network create roboshop
+  110  05/04/25 06:50:02 docker run -d --name catalogue --network roboshop  catalogue:1
+  111  05/04/25 06:50:16 ifconfig
+  112  05/04/25 06:50:42 docker ps
+  113  05/04/25 06:50:54 docker logs catalogue
+  114  05/04/25 06:51:23 docker run -d --name mongodb --network roboshop  mongodb:1
+  115  05/04/25 06:51:37 docker restart catalogue
+  116  05/04/25 06:52:08 docker run -d --name web --network roboshop  web:1
+  117  05/04/25 06:52:11 docker ps
+  118  05/04/25 06:52:36 docker rm -f 9412fca6e1f1
+  119  05/04/25 06:52:49 docker run -d -p 80:80--name web --network roboshop  web:1
+  120  05/04/25 06:52:54 docker run -d -p 80:80 --name web --network roboshop  web:1
+  121  05/04/25 06:52:58 docker ps
+  122  05/04/25 06:53:22 docker logs catalogue
+  123  05/04/25 06:53:55 cd ..
+  124  05/04/25 06:53:59 cd mongodb/
+  125  05/04/25 06:54:01 ll
+  126  05/04/25 06:54:05 cd schema/
+  127  05/04/25 06:54:06 ll
+  128  05/04/25 06:54:13 cat master-data.js
+  129  05/04/25 06:55:54 docker exec -it dce619d0dd15 bash
+  130  05/04/25 06:56:38 docker exec -it dce619d0dd15  mongosh --eval "db.getMongo().getDBNames()"
+  131  05/04/25 06:57:04 docker exec -it dce619d0dd15 mongosh --eval "db = db.getSiblingDB('catalogue'); db.products.find().pretty()"
+  132  05/04/25 07:41:32 docker logs catalogue
+  133  05/04/25 07:42:18 ip route | grep default
+  134  05/04/25 07:42:27 ip route | grep roboshop
+  135  05/04/25 07:42:34 iproute
+  136  05/04/25 07:42:39 ip route
+  137  05/04/25 07:42:51 docker inspect catalogue
+  138  05/04/25 07:43:07 docker inspect mongodb
+  139  05/04/25 07:43:18 docker inspect web
+  140  05/04/25 07:44:04 docker restart catalogue
+  141  05/04/25 07:45:55 docker logs catalogue
+  142  05/04/25 07:47:00 git pull
+  143  05/04/25 07:47:04 docker ps
+  144  05/04/25 07:47:12 docker rm -f dee8130ab479
+  145  05/04/25 07:47:17 docker rmi web:1
+  146  05/04/25 07:47:24 cd ../../web/
+  147  05/04/25 07:47:34 docker build -t web:1 .
+  148  05/04/25 07:48:26 docker run -d --name web -p 80:80  web:1
+  149  05/04/25 07:48:28 docker ps
+  150  05/04/25 07:48:34 docker ps -a
+  151  05/04/25 07:48:40 docker logs web
+  152  05/04/25 07:49:57 docker network inspect roboshop
+  153  05/04/25 07:50:42 docker rm -f 3f5f3763c
+  154  05/04/25 07:51:12 docker run -d -p 80:80 --network roboshop --name web web:1
+  155  05/04/25 07:51:17 docker ps
+  156  05/04/25 07:51:29 docker logs web
+  157  05/04/25 07:52:13 docker network inspect roboshop
+  158  05/04/25 07:53:02 docker restart web
+  159  05/04/25 07:54:00 git pull
+  160  05/04/25 07:54:03 dockerps
+  161  05/04/25 07:54:05 docke rps
+  162  05/04/25 07:54:07 docker ps
+  163  05/04/25 07:54:14 docker rm -f 23230e350c9c
+  164  05/04/25 07:54:19 docker rmi web:1
+  165  05/04/25 07:54:31 docker build -t web:1 .
+  166  05/04/25 07:54:42 docker run -d -p 80:80 --network roboshop --name web web:1
+  167  05/04/25 07:54:45 docker ps
+  168  05/04/25 07:55:22 curl http://98.81.206.223/api/catalogue/categories
+  169  05/04/25 07:57:29 git pull
+  170  05/04/25 07:57:33 docker rm -f web
+  171  05/04/25 07:57:38 docker rmi web:1
+  172  05/04/25 07:57:46 docker build -t web:! .
+  173  05/04/25 07:57:51 docker build -t web:1 .
+  174  05/04/25 07:58:00 docker run -d -p 80:80 --network roboshop --name web web:1
+  175  05/04/25 07:58:06 docker ps
+  176  05/04/25 07:58:52 docker logs catalogue
+  177  05/04/25 07:59:51 git pull
+  178  05/04/25 07:59:54 docker rm web
+  179  05/04/25 07:59:57 docker rmi web:!
+  180  05/04/25 08:00:00 docker rmi web:1
+  181  05/04/25 08:00:15 docker rm -f web
+  182  05/04/25 08:00:18 docker rmi web:1
+  183  05/04/25 08:00:24 docker build -t web:1 .
+  184  05/04/25 08:00:32 docker run -d -p 80:80 --network roboshop --name web web:1
+  185  05/04/25 08:00:38 docker logs web
+  186  05/04/25 08:01:41 docker exec -it web curl http://catalogue:8080/categories
+  187  05/04/25 08:02:10 docker exec -it web curl http://catalogue:8080/api/catalogue/categories
+  188  05/04/25 08:05:23 docker ps
+  189  05/04/25 08:06:08 docker rm -f web
+  190  05/04/25 08:06:13 docker rmi web:1
+  191  05/04/25 08:06:17 docker build -t web:1 .
+  192  05/04/25 08:06:23 docker run -d -p 80:80 --network roboshop --name web web:1
+  193  05/04/25 08:06:29 docker exec -it web curl http://catalogue:8080/categories
+  194  05/04/25 08:08:06 curl http://localhost/api/catalogue/categories
+  195  05/04/25 08:08:12 http://98.81.206.223/api/catalogue/categories
+  196  05/04/25 08:13:26 curl http://http//98.81.206.223/api/catalogue/categories
+  197  05/04/25 08:13:34 curl http:98.81.206.223/api/catalogue/categories
+  198  05/04/25 08:13:41 curl http://98.81.206.223/api/catalogue/categories
+  199  05/04/25 08:13:54 curl http://catalogue:8080/categories
+  200  05/04/25 08:14:00 docker ps
+  201  05/04/25 08:14:19  docker exec -it web curl http://catalogue:8080/categories
+  202  05/04/25 08:15:11 docker rm web
+  203  05/04/25 08:15:17 docker rm -f web
+  204  05/04/25 08:15:26 docker rmi web:1
+  205  05/04/25 08:15:34 docker build -t web:1 .
+  206  05/04/25 08:15:39 git pu;;
+  207  05/04/25 08:15:42 git pull
+  208  05/04/25 08:15:49 docker rmi web:1
+  209  05/04/25 08:15:58 docker build -t web:1 .
+  210  05/04/25 08:16:06 docker run -d -p 80:80 --network roboshop --name web web:1
+  211  05/04/25 08:16:11  docker exec -it web curl http://catalogue:8080/categories
+  212  05/04/25 08:16:56 docker exec -it web bash
+  213  05/04/25 08:18:52 docker exec -it web curl http://catalogue:8080/categories
+  214  05/04/25 08:18:52 # Output: ["Artificial Intelligence", "Robot"]
+  215  05/04/25 08:19:14 curl http://localhost/api/catalogue/categories
+  216  05/04/25 08:19:33 http://localhost/api/catalogue/categories
+  217  05/04/25 08:19:38 curl http://localhost/api/catalogue/categories
+  218  05/04/25 08:20:42 docker rm -f web
+  219  05/04/25 08:20:48 docker rmi web:1
+  220  05/04/25 08:20:59 docker build -t web .
+  221  05/04/25 08:20:59 docker rm -f web
+  222  05/04/25 08:20:59 docker run -d --name web -p 80:80 --network roboshop web
+  223  05/04/25 08:21:05 docker ps
+  224  05/04/25 08:21:28 curl http://localhost/api/catalogue/categories
+  225  05/04/25 08:22:03 git pull
+  226  05/04/25 08:22:36 docker build -t web .
+  227  05/04/25 08:22:36 docker rm -f web
+  228  05/04/25 08:22:36 docker run -d --name web -p 80:80 --network roboshop web
+  229  05/04/25 08:22:48 curl http://localhost/api/catalogue/categories
+  230  05/04/25 08:23:32 docker exec -it web cat /etc/nginx/nginx.conf
+  231  05/04/25 08:24:03 curl http://98.81.206.223/api/catalogue/categories
+  232  05/04/25 08:24:16 curl http://catalogue:8080/categories
+  233  05/04/25 08:24:24 docker exec -it web curl http://catalogue:8080/categories
+  234  05/04/25 08:24:46 docker logs web
+  235  05/04/25 08:26:04 git pull
+  236  05/04/25 08:26:14 docker build -t web .
+  237  05/04/25 08:26:15 docker rm -f web
+  238  05/04/25 08:26:15 docker run -d --name web -p 80:80 --network roboshop web
+  239  05/04/25 08:26:33 curl http://localhost/api/catalogue/categories
+  240  05/04/25 08:26:55 docker logs web
+  241  05/04/25 08:27:16 docker exec -it web curl http://catalogue:8080/categories
+  242  05/04/25 08:27:16 # Output: ["Artificial Intelligence","Robot"]
+  243  05/04/25 08:28:25 docker exec -it web cat /etc/nginx/nginx.conf
+  244  05/04/25 08:28:47 curl http://localhost/api/catalogue/categories
+  245  05/04/25 08:28:53 docker logs web
+  246  05/04/25 08:30:38 git pull
+  247  05/04/25 08:31:43 docker build -t web .
+  248  05/04/25 08:31:43 docker rm -f web
+  249  05/04/25 08:31:44 docker run -d --name web -p 80:80 --network roboshop web
+  250  05/04/25 08:31:59 docker ps
+  251  05/04/25 08:32:08 docker logs web
+  252  05/04/25 08:34:03 git pull
+  253  05/04/25 08:34:18 docker build -t web .
+  254  05/04/25 08:34:18 docker rm -f web
+  255  05/04/25 08:34:18 docker run -d --name web -p 80:80 --network roboshop web
+  256  05/04/25 08:34:28 curl http://localhost/api/catalogue/categories
+  257  05/04/25 08:34:28 curl http://localhost/api/user/uniqueid
+  258  05/04/25 08:34:38 curl http://localhost/api/catalogue/categories
+  259  05/04/25 08:38:32 docker images
+  260  05/04/25 08:39:05 docker rmi 77be8480adac d1ec35aa9b77 8254e2ff3e11 0bda5d0005fb
+  261  05/04/25 08:39:08 docker images
+  262  05/04/25 08:42:38 docker ps
+  263  05/04/25 08:42:54 docke rm -f ac3ecb77efe4  dce619d0dd15 79124a946a14
+  264  05/04/25 08:43:03 docker rm -f ac3ecb77efe4  dce619d0dd15 79124a946a14
+  265  05/04/25 08:43:09 docker network
+  266  05/04/25 08:43:21 docker network rm roboshop
+  267  05/04/25 08:43:26 git pull
+  268  05/04/25 08:43:32 cd ..
+  269  05/04/25 08:43:33 ll
+  270  05/04/25 08:43:41 docker compose up -d
+  271  05/04/25 08:44:32 docker images
+  272  05/04/25 08:44:50 git pull
+  273  05/04/25 08:44:57 docker compose down
+  274  05/04/25 08:45:14 docker compose up -d
+  275  05/04/25 08:45:50 docker logs web
+  276  05/04/25 08:46:27 docker ps
+  277  05/04/25 08:46:41 docker compose up -d
+  278  05/04/25 08:46:46 git pull
+  279  05/04/25 08:46:48 docker compose up -d
+  280  05/04/25 08:47:06 docke rps
+  281  05/04/25 08:47:08 docker ps
+  282  05/04/25 08:47:14 docker logs web
+  283  05/04/25 08:49:34 systemctl stop docker
+  284  05/04/25 08:49:41 sudo systemctl stop docker
+  285  05/04/25 08:50:04 sudo systemctl enable docker
+  286  05/04/25 08:50:13 sudo systemctl start docker
+  287  05/04/25 08:50:19 docker ps
+  288  05/04/25 08:50:24 docker ps -a
+  289  05/04/25 08:50:33 docker compose up -d
+  290  05/04/25 08:50:37 docker ps
+  291  05/04/25 08:50:57 docker compose down
+  292  05/04/25 08:51:12 docker ps
+  293  05/04/25 08:51:17 docker images
+  294  05/04/25 08:51:36 docker rmi a7d44eea2064 53a18edff809
+  295  05/04/25 08:51:38 docker iumages
+  296  05/04/25 08:51:42 docker images
+  297  05/04/25 08:52:02 docker tag --help
+  298  05/04/25 08:52:23 docker tag web web:!
+  299  05/04/25 08:52:26 docker tag web web:1
+  300  05/04/25 08:52:29 docker images
+  301  05/04/25 08:54:47 dockerps
+  302  05/04/25 08:54:49 docker ps
+  303  05/04/25 08:54:53 docker images
+  304  05/04/25 08:55:10 history
