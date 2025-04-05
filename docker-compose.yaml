@@ -1,0 +1,25 @@
+services:
+  mongodb:
+    image: mongodb:1
+    networks:
+      - roboshop
+
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - catalogue
+    networks:
+      - roboshop
+
+  catalogue:
+    build: ./catalogue
+    ports:
+      - "8081:8080"
+    networks:
+      - roboshop
+
+networks:
+  roboshop:
+    driver: bridge
