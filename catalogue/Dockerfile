@@ -1,5 +1,5 @@
 FROM node:20
-ENV MONGO=True
+ENV MONGO=true
 WORKDIR /app
 COPY package.json /app/
 RUN npm install
